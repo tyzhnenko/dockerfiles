@@ -3,7 +3,9 @@ FROM centos:7
 ENV shellcheckVersion 0.4.4
 ENV shellcheckTag v$shellcheckVersion
 
-RUN yum install --setopt=tsflags=nodocs \
+RUN yum -y install epel-release && \
+    yum -y update && \
+    yum install --setopt=tsflags=nodocs \
       --nogpgcheck \
       --assumeyes \
       --quiet \
@@ -16,4 +18,5 @@ RUN cabal update \
     && tar zxf /tmp/shellcheck-$shellcheckTag.tar.gz -C /tmp/ \
     && rm /tmp/shellcheck-$shellcheckTag.tar.gz \
     && cabal install /tmp/shellcheck-$shellcheckVersion
+
 RUN ln -s ~/.cabal/bin/shellcheck /usr/local/bin/
