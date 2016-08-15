@@ -1,6 +1,6 @@
 FROM centos:7
 
-ENV shellcheckVersion 0.4.4
+ENV shellcheckVersion 0.4.3
 ENV shellcheckTag v$shellcheckVersion
 
 RUN yum -y install epel-release && \
