@@ -13,6 +13,10 @@ RUN yum -y install epel-release && \
     yum clean all && \
     rm -rf /var/cache/yum
 
+RUN cabal update && \
+    cabal install cabal-install && \
+    cabal install cabal
+
 RUN cabal update \
     && curl -Lso /tmp/shellcheck-$shellcheckTag.tar.gz https://github.com/koalaman/shellcheck/archive/$shellcheckTag.tar.gz \
     && tar zxf /tmp/shellcheck-$shellcheckTag.tar.gz -C /tmp/ \
